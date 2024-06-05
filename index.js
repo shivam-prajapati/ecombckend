@@ -3,6 +3,7 @@ const app = express();
 const PORT = 5001;
 
 app.get("/", (req, res) => {
+  console.log("inside the first get");
   res.send({ hi: "this is JSON" });
 });
 
