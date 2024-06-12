@@ -1,3 +1,4 @@
 1. Object returned from mongoose can not be added, neither we can add property to it.
    apparently because it is a mongoose object instead of a JSON object.
 2. when we send a response by {res.json} , remaining code still runs.
+3. longer endpoint handler should be put first in file.("/order" should be handled before "/")

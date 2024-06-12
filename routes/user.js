@@ -43,7 +43,7 @@ const login = asyncHandler(async (req, res) => {
       },
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "15m" }
+    { expiresIn: "30m" }
   );
   console.log("inside login");
   res.status(201).json(accessToken);
