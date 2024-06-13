@@ -12,16 +12,16 @@ const validateToken = require("./middleware/tokenVerify");
 
 app.use("/user", require("./routes/user"));
 app.use("/item", require("./routes/item"));
+app.use("/cart",validateToken,require("./routes/cart"))
+// app.get("/order", validateToken, (req, res) => {
+//   console.log("token validation cleared");
+//   res.status(200).json(req.user);
+// });
 
-app.get("/order", validateToken, (req, res) => {
-  console.log("token validation cleared");
-  res.status(200).json(req.user);
-});
-
-app.get("/", (req, res) => {
-  console.log("inside simple get Request ");
-  res.status(200).json({ from: "simple get" });
-});
+// app.get("/", (req, res) => {
+//   console.log("inside simple get Request ");
+//   res.status(200).json({ from: "simple get" });
+// });
 
 app.use(errorHandler);
 app.listen(PORT, () => {
