@@ -5,6 +5,7 @@ const getCarts = asyncHandler(async (req, res) => {
   console.log("inside get all Carts");
   const {mail} = req.user
   const allCarts = await Cart.find({mail});
+  // console.log("carts",JSON.stringify(allCarts))
   res.status(200).json(allCarts);
 });
 
