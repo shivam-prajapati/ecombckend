@@ -21,7 +21,16 @@ const signUp = asyncHandler(async (req, res) => {
 
 const login = asyncHandler(async (req, res) => {
   const { mail, password } = req.body;
+  console.log(req.body);
+  if (!mail && !password) throw new Error("received Empty Body");
   const isUser = (await User.find({ mail }))[0];
+  if (!isUser) {
+    res.status(400).json({
+      message: "can not login",
+      error: "password or mail is wrong",
+    });
+    return;
+  }
   const isOk = await bcrypt.compare(password, isUser.password);
   if (!isOk) {
     res.status(400).json({
@@ -64,7 +73,10 @@ const forgetPass = asyncHandler(async (req, res) => {
     return;
   }
   const hashed = await bcrypt.hash(newPassword, 10);
-  const  {modifiedCount}  = await User.updateOne({ mail }, { password: hashed });
+  const { modifiedCount } = await User.updateOne(
+    { mail },
+    { password: hashed }
+  );
   if (modifiedCount === 0) {
     res.status(500);
     throw new Error("NOt able to update Password currently");
@@ -72,4 +84,4 @@ const forgetPass = asyncHandler(async (req, res) => {
   res.status(200).json({ msg: `password for ${mail} is updated Successfully` });
 });
 
-module.exports = { signUp, login, getAllUser,forgetPass };
+module.exports = { signUp, login, getAllUser, forgetPass };

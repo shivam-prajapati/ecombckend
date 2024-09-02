@@ -5,4 +5,4 @@ const Order = new mongoose.Schema({
   id: String,
 });
 
-module.exports = mongoose.model("Order", order);
+module.exports = mongoose.model("Order", Order);
