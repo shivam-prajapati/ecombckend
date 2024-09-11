@@ -7,8 +7,6 @@ const tokenVerify = asyncHandler(async (req, res, next) => {
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
     if (err) {
       res.status(401);
-      debugger
-      console.log("fuck")
       throw new Error("user is not defined");
     }
     req.user = decoded.user;

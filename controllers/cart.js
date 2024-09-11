@@ -41,7 +41,6 @@ const deleteCart = asyncHandler(async (req, res) => {
   const {mail} = req.user
   // const cart = req.body;
   const { acknowledged, deletedCount } = await Cart.deleteOne({ _id ,mail});
-  //cart deleted is of type { acknowledged: true, deletedCount: 1 }
   //   console.log(cartDeleted)
   if (!acknowledged || deletedCount == 0) {
     res.status(500);
